@@ -16,6 +16,11 @@ namespace Atea_code_assignment_api.Repositories
             modelBuilder.Entity<GameObject>()
                 .HasIndex(g => g.Name)
                 .IsUnique();
+
+            modelBuilder.Entity<GameObject>()
+                .Property(g => g.Price)
+                .HasColumnType("money")
+                .HasPrecision(2);
         }
     }
 }
