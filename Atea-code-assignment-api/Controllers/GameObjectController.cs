@@ -1,6 +1,8 @@
 ﻿using Atea_code_assignment_api.Entities;
+using Atea_code_assignment_api.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Atea_code_assignment_api.Controllers
 {
@@ -8,27 +10,29 @@ namespace Atea_code_assignment_api.Controllers
     [ApiController]
     public class GameObjectController : ControllerBase
     {
+        private readonly IGameObjectService _gameObjectService;
+
+        public GameObjectController(IGameObjectService gameObjectService)
+        {
+            _gameObjectService = gameObjectService;
+        }
 
         [HttpGet]
-        public ActionResult<string> ListGames(string search)
+        public ActionResult<List<GameObject>> ListGames(string search)
         {
-            return search;
+            return _gameObjectService.ListGames();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<string> LoadGame(string id)
+        public ActionResult<GameObject> LoadGame(string id)
         {
-            return id;
+            return _gameObjectService.LoadGame(id);
         }
 
         [HttpPost]
         public ActionResult<bool> StoreGame([FromBody] GameObject gameObject)
         {
-            if (gameObject.Id.Equals("ABC-123"))
-            {
-                return true;
-            }
-            return false;
+            return _gameObjectService.StoreGame(gameObject);
         }
     }
 }
