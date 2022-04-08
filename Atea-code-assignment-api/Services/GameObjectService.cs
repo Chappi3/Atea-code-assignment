@@ -1,7 +1,11 @@
 ﻿using Atea_code_assignment_api.Entities;
 using Atea_code_assignment_api.Interfaces;
+using Atea_code_assignment_api.Models;
 using Atea_code_assignment_api.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Atea_code_assignment_api.Services
 {
@@ -14,19 +18,40 @@ namespace Atea_code_assignment_api.Services
             _gameObjectRepository = gameObjectRepository;
         }
 
-        public List<GameObject> ListGames()
+        public async Task<GameObject> CreateGame(NewGameObjectModel gameObjectModel)
         {
-            throw new System.NotImplementedException();
+            var newGameObject = new GameObject() 
+            {
+                Name = gameObjectModel.Name,
+                Company = gameObjectModel.Company,
+                Price = gameObjectModel.Price
+            };
+
+            await _gameObjectRepository.GameObjects.AddAsync(newGameObject);
+            await _gameObjectRepository.SaveChangesAsync();
+            return newGameObject;
         }
 
-        public GameObject LoadGame(string id)
+        public async Task<List<GameObject>> ListGames(string search)
         {
-            throw new System.NotImplementedException();
+            if (search != string.Empty)
+            {
+                return await _gameObjectRepository.GameObjects.Where(g => g.Name.ToLower().Contains(search.ToLower())).ToListAsync();
+            }
+
+            return await _gameObjectRepository.GameObjects.ToListAsync();
         }
 
-        public bool StoreGame(GameObject gameObject)
+        public async Task<GameObject> LoadGame(string id)
         {
-            throw new System.NotImplementedException();
+            return await _gameObjectRepository.GameObjects.FirstOrDefaultAsync(g => g.Id == id);
+        }
+
+        public async Task<bool> StoreGame(GameObject gameObject)
+        {
+            await _gameObjectRepository.GameObjects.AddAsync(gameObject);
+            await _gameObjectRepository.SaveChangesAsync();
+            return true;
         }
     }
 }
