@@ -19,8 +19,7 @@ namespace Atea_code_assignment_api.Repositories
 
             modelBuilder.Entity<GameObject>()
                 .Property(g => g.Price)
-                .HasColumnType("money")
-                .HasPrecision(2);
+                .HasColumnType("money");
         }
     }
 }
