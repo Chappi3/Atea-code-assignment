@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atea-code-assignment-api", "Atea-code-assignment-api\Atea-code-assignment-api.csproj", "{74BDF2BB-5E0A-472B-86EB-EF4C8BB8027C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atea-code-assignment-api", "Atea-code-assignment-api\Atea-code-assignment-api.csproj", "{74BDF2BB-5E0A-472B-86EB-EF4C8BB8027C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atea-code-assignment-client", "Atea-code-assignment-client\Atea-code-assignment-client.csproj", "{FAC7F374-3CFD-4680-9828-DD06D565D953}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{74BDF2BB-5E0A-472B-86EB-EF4C8BB8027C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74BDF2BB-5E0A-472B-86EB-EF4C8BB8027C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74BDF2BB-5E0A-472B-86EB-EF4C8BB8027C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC7F374-3CFD-4680-9828-DD06D565D953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC7F374-3CFD-4680-9828-DD06D565D953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC7F374-3CFD-4680-9828-DD06D565D953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC7F374-3CFD-4680-9828-DD06D565D953}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
