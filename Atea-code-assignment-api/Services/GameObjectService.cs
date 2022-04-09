@@ -1,0 +1,57 @@
+﻿using Atea_code_assignment_api.Entities;
+using Atea_code_assignment_api.Interfaces;
+using Atea_code_assignment_api.Models;
+using Atea_code_assignment_api.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Atea_code_assignment_api.Services
+{
+    public class GameObjectService : IGameObjectService
+    {
+        private readonly GameObjectRepository _gameObjectRepository;
+
+        public GameObjectService(GameObjectRepository gameObjectRepository)
+        {
+            _gameObjectRepository = gameObjectRepository;
+        }
+
+        public async Task<GameObject> CreateGame(NewGameObjectModel gameObjectModel)
+        {
+            var newGameObject = new GameObject() 
+            {
+                Name = gameObjectModel.Name,
+                Company = gameObjectModel.Company,
+                Price = gameObjectModel.Price
+            };
+
+            await _gameObjectRepository.GameObjects.AddAsync(newGameObject);
+            await _gameObjectRepository.SaveChangesAsync();
+            return newGameObject;
+        }
+
+        public async Task<List<GameObject>> ListGames(string search)
+        {
+            if (search != string.Empty)
+            {
+                return await _gameObjectRepository.GameObjects.Where(g => g.Name.ToLower().Contains(search.ToLower())).ToListAsync();
+            }
+
+            return await _gameObjectRepository.GameObjects.ToListAsync();
+        }
+
+        public async Task<GameObject> LoadGame(string id)
+        {
+            return await _gameObjectRepository.GameObjects.FirstOrDefaultAsync(g => g.Id == id);
+        }
+
+        public async Task<bool> StoreGame(GameObject gameObject)
+        {
+            await _gameObjectRepository.GameObjects.AddAsync(gameObject);
+            await _gameObjectRepository.SaveChangesAsync();
+            return true;
+        }
+    }
+}
