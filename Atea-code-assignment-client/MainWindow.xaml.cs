@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Atea_code_assignment_client.Models;
+using Atea_code_assignment_client.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,17 @@ namespace Atea_code_assignment_client
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MyGamesViewModel();
+        }
+
+        private void MyGames_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new MyGamesViewModel();
+        }
+
+        private void AddGame_Clicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new AddGameViewModel();
         }
     }
 }

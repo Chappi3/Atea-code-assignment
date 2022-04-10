@@ -18,23 +18,9 @@ namespace Atea_code_assignment_api.Services
             _gameObjectRepository = gameObjectRepository;
         }
 
-        public async Task<GameObject> CreateGame(NewGameObjectModel gameObjectModel)
-        {
-            var newGameObject = new GameObject() 
-            {
-                Name = gameObjectModel.Name,
-                Company = gameObjectModel.Company,
-                Price = gameObjectModel.Price
-            };
-
-            await _gameObjectRepository.GameObjects.AddAsync(newGameObject);
-            await _gameObjectRepository.SaveChangesAsync();
-            return newGameObject;
-        }
-
         public async Task<List<GameObject>> ListGames(string search)
         {
-            if (search != string.Empty)
+            if (search != null)
             {
                 return await _gameObjectRepository.GameObjects.Where(g => g.Name.ToLower().Contains(search.ToLower())).ToListAsync();
             }

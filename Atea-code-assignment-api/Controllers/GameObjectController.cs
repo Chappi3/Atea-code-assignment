@@ -30,12 +30,6 @@ namespace Atea_code_assignment_api.Controllers
             return await _gameObjectService.LoadGame(id);
         }
 
-        [HttpPost("new")]
-        public async Task<ActionResult<GameObject>> CreateGame([FromBody] NewGameObjectModel newGameObject)
-        {
-            return await _gameObjectService.CreateGame(newGameObject);
-        }
-
         [HttpPost]
         public async Task<ActionResult<bool>> StoreGame([FromBody] GameObject gameObject)
         {

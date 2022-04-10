@@ -4,9 +4,58 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Atea_code_assignment_client"
+        xmlns:viewmodels="clr-namespace:Atea_code_assignment_client.ViewModels"
+        xmlns:views="clr-namespace:Atea_code_assignment_client.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        FontFamily="Cascadia Code"
+        Title="Atea Code Assignment Client"
+        Height="700"
+        MinHeight="350"
+        Width="1350"
+        MinWidth="675"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <DataTemplate x:Name="MyGamesTemplate" DataType="{x:Type viewmodels:MyGamesViewModel}">
+            <views:MyGames DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="AddGameTemplate" DataType="{x:Type viewmodels:AddGameViewModel}">
+            <views:AddGame DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Background="#282D33">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ContentControl 
+            Grid.Row="0" 
+            Grid.Column="1" 
+            Grid.ColumnSpan="4" 
+            Grid.RowSpan="5" 
+            Content="{Binding}"/>
+
+        <DockPanel Grid.Row="0" 
+                   Grid.Column="0" 
+                   Grid.RowSpan="5"
+                   Background="#3A4149">
+            <StackPanel>
+                <Button Content="My Games" Click="MyGames_Clicked"/>
+                <Button Content="Add Game" Click="AddGame_Clicked"/>
+            </StackPanel>
+        </DockPanel>
         
     </Grid>
 </Window>
