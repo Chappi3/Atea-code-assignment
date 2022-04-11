@@ -24,26 +24,26 @@ namespace Atea_code_assignment_client.Views
     public partial class MyGames : UserControl
     {
         private readonly HttpClient client;
+
         public MyGames()
         {
             InitializeComponent();
             client = new();
             client.BaseAddress = new Uri("http://localhost:45405/api/");
-            GetGameObject();
+            GetGameObjects();
         }
 
-        private async void GetGameObject()
+        private async void GetGameObjects()
         {
             var response = await client.GetStringAsync("gameobject");
-            var gameObjects = JsonSerializer.Deserialize<List<GameObject>>(response);
-            dataGrid.DataContext = gameObjects;
+            Games.ItemsSource = JsonSerializer.Deserialize<List<GameObject>>(response);
         }
 
         private async void SearchButton_Clicked(object sender, RoutedEventArgs e)
         {
             var response = await client.GetStringAsync("gameobject?search=" + searchInput.Text);
-            var gameObjects = JsonSerializer.Deserialize<List<GameObject>>(response);
-            dataGrid.DataContext= gameObjects;
+            Games.ItemsSource = JsonSerializer.Deserialize<List<GameObject>>(response);
         }
+
     }
 }
