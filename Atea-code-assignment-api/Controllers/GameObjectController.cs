@@ -1,6 +1,5 @@
 ﻿using Atea_code_assignment_api.Entities;
 using Atea_code_assignment_api.Interfaces;
-using Atea_code_assignment_api.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

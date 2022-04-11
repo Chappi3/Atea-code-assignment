@@ -1,6 +1,5 @@
 ﻿using Atea_code_assignment_api.Entities;
 using Atea_code_assignment_api.Interfaces;
-using Atea_code_assignment_api.Models;
 using Atea_code_assignment_api.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -22,7 +21,9 @@ namespace Atea_code_assignment_api.Services
         {
             if (search != null)
             {
-                return await _gameObjectRepository.GameObjects.Where(g => g.Name.ToLower().Contains(search.ToLower())).ToListAsync();
+                return await _gameObjectRepository.GameObjects
+                    .Where(g => g.Name.ToLower().Contains(search.ToLower()) || g.Company.ToLower().Contains(search.ToLower()))
+                    .ToListAsync();
             }
 
             return await _gameObjectRepository.GameObjects.ToListAsync();

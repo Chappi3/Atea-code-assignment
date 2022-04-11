@@ -13,7 +13,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="60"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -38,21 +38,21 @@
                         HorizontalAlignment="Right"
                         Margin="5">
                 <Label Foreground="White" Content="Name :"/>
-                <TextBox x:Name="addGameName" Width="125"/>
+                <TextBox x:Name="addGameName" Width="125" VerticalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Right"
                         Margin="5">
                 <Label Foreground="White" Content="Company :"/>
-                <TextBox x:Name="addGameCompany" Width="125"/>
+                <TextBox x:Name="addGameCompany" Width="125" VerticalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Right"
                         Margin="5">
                 <Label Foreground="White" Content="Price :"/>
-                <TextBox x:Name="addGamePrice" Width="125"/>
+                <TextBox x:Name="addGamePrice" Width="125" VerticalAlignment="Center"/>
             </StackPanel>
 
             <Button Width="90" 

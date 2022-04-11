@@ -38,5 +38,12 @@ namespace Atea_code_assignment_client.Views
             var gameObjects = JsonSerializer.Deserialize<List<GameObject>>(response);
             dataGrid.DataContext = gameObjects;
         }
+
+        private async void SearchButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var response = await client.GetStringAsync("gameobject?search=" + searchInput.Text);
+            var gameObjects = JsonSerializer.Deserialize<List<GameObject>>(response);
+            dataGrid.DataContext= gameObjects;
+        }
     }
 }
