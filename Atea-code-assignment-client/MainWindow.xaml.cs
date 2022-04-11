@@ -37,5 +37,10 @@ namespace Atea_code_assignment_client
         {
             DataContext = new AddGameViewModel();
         }
+
+        public void ShowGame()
+        {
+            DataContext = new GameViewModel();
+        }
     }
 }

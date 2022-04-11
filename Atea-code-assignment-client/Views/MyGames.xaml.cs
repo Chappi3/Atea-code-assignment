@@ -1,4 +1,5 @@
 ﻿using Atea_code_assignment_client.Models;
+using Atea_code_assignment_client.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,5 +46,10 @@ namespace Atea_code_assignment_client.Views
             Games.ItemsSource = JsonSerializer.Deserialize<List<GameObject>>(response);
         }
 
+        private void GameButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var gameId = (sender as Button).Tag.ToString();
+            DataContext = new GameViewModel();
+        }
     }
 }
