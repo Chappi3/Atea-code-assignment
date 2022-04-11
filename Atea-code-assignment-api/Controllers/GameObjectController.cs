@@ -1,6 +1,5 @@
 ﻿using Atea_code_assignment_api.Entities;
 using Atea_code_assignment_api.Interfaces;
-using Atea_code_assignment_api.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -28,12 +27,6 @@ namespace Atea_code_assignment_api.Controllers
         public async Task<ActionResult<GameObject>> LoadGame(string id)
         {
             return await _gameObjectService.LoadGame(id);
-        }
-
-        [HttpPost("new")]
-        public async Task<ActionResult<GameObject>> CreateGame([FromBody] NewGameObjectModel newGameObject)
-        {
-            return await _gameObjectService.CreateGame(newGameObject);
         }
 
         [HttpPost]
