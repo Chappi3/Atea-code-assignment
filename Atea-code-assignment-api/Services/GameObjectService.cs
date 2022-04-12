@@ -1,7 +1,9 @@
 ﻿using Atea_code_assignment_api.Entities;
+using Atea_code_assignment_api.Exceptions;
 using Atea_code_assignment_api.Interfaces;
 using Atea_code_assignment_api.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,7 +39,14 @@ namespace Atea_code_assignment_api.Services
         public async Task<bool> StoreGame(GameObject gameObject)
         {
             await _gameObjectRepository.GameObjects.AddAsync(gameObject);
-            await _gameObjectRepository.SaveChangesAsync();
+            try
+            {
+                await _gameObjectRepository.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new StoreGameException(e.Message);
+            }
             return true;
         }
     }

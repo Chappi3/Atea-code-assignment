@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System;
 using Serilog;
 using System.Net;
+using Atea_code_assignment_api.Exceptions;
 
 namespace Atea_code_assignment_api.Middlewares
 {
@@ -34,6 +35,12 @@ namespace Atea_code_assignment_api.Middlewares
                 Log.Warning($"Validation error occured in API. {exception.Message}");
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return context.Response.WriteAsJsonAsync(new { exception.Message });
+            }
+            else if (exception is StoreGameException)
+            {
+                Log.Warning($"Failed to store game. {exception.Message}");
+                context.Response.StatusCode= (int)HttpStatusCode.BadRequest;
+                return context.Response.WriteAsJsonAsync(false);
             }
             else
             {

@@ -1,4 +1,5 @@
 using Atea_code_assignment_api.Interfaces;
+using Atea_code_assignment_api.Middlewares;
 using Atea_code_assignment_api.Repositories;
 using Atea_code_assignment_api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -54,19 +55,18 @@ namespace Atea_code_assignment_api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<CustomExceptionHandlingMiddleware>();
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                // disabled due to custom exception handling
+                // app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Atea_code_assignment_api v1"));
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
