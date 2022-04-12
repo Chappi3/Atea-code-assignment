@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
+using Serilog.Events;
 
 namespace Atea_code_assignment_api
 {
@@ -23,6 +25,16 @@ namespace Atea_code_assignment_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // Logging
+            var name = typeof(Program).Assembly.GetName().Name;
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .Enrich.FromLogContext()
+                .Enrich.WithMachineName()
+                .Enrich.WithProperty("Assembly", name)
+                .WriteTo.Console()
+                .CreateLogger();
 
             services.AddDbContext<GameObjectRepository>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("GameObjectRepository"));
