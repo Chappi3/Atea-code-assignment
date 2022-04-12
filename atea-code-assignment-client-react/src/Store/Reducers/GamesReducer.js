@@ -2,6 +2,9 @@ export const GamesActionTypes = {
   GetGamesRequest: 'GetGamesRequest',
   GetGamesSuccess: 'GetGamesSuccess',
   GetGamesFail: 'GetGamesFail',
+  AddGameRequest: 'AddGameRequest',
+  AddGameSuccess: 'AddGameSuccess',
+  AddGameFail: 'AddGameFail',
 }
 
 const initialState = {
@@ -25,6 +28,24 @@ export const GamesReducer = (state = initialState, action) => {
         pending: false,
       }
     case GamesActionTypes.GetGamesFail:
+      return {
+        ...state,
+        pending: false,
+        error: action.payload,
+      }
+    case GamesActionTypes.AddGameRequest:
+      return {
+        ...state,
+        pending: true,
+        error: '',
+      }
+    case GamesActionTypes.AddGameSuccess:
+      return {
+        ...state,
+        games: [...state.games, action.payload],
+        pending: false,
+      }
+    case GamesActionTypes.AddGameFail:
       return {
         ...state,
         pending: false,

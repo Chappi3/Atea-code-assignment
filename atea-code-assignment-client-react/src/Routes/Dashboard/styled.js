@@ -41,4 +41,5 @@ export const Card = styled.div`
   align-items: center;
   width: 250px;
   box-sizing: border-box;
+  cursor: pointer;
 `
