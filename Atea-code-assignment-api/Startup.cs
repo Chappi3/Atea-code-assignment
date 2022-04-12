@@ -36,10 +36,12 @@ namespace Atea_code_assignment_api
                 .WriteTo.Console()
                 .CreateLogger();
 
+            // Repositories
             services.AddDbContext<GameObjectRepository>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("GameObjectRepository"));
             });
 
+            // Services
             services.AddScoped<IGameObjectService, GameObjectService>();
 
             services.AddControllers();
