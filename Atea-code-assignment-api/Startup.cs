@@ -50,11 +50,21 @@ namespace Atea_code_assignment_api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Atea_code_assignment_api", Version = "v1" });
             });
+
+            // Cors
+            services.AddCors(options => options.AddPolicy("AssignmentPolicy", builder =>
+            {
+                builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .SetIsOriginAllowed(_ => true);
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("AssignmentPolicy");
             app.UseMiddleware<CustomExceptionHandlingMiddleware>();
             if (env.IsDevelopment())
             {

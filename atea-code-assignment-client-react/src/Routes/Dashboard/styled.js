@@ -8,6 +8,23 @@ export const Container = styled.div`
 
 export const HeaderContainer = styled.div`
   margin: 20px;
+  align-items: center;
+`
+
+export const Header = styled.div``
+
+export const SearchContainer = styled.div`
+  flex-direction: row;
+  align-items: center;
+`
+
+export const SearchLabel = styled.div`
+  margin-right: 5px;
+`
+
+export const SearchInput = styled.input`
+  height: 20px;
+  border-radius: 5px;
 `
 
 export const CardsContainer = styled.div`
