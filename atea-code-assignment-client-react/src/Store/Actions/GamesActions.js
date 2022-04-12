@@ -14,3 +14,18 @@ export const GetGamesFail = (payload) => ({
   type: GamesActionTypes.GetGamesFail,
   payload,
 })
+
+export const AddGameRequest = (payload) => ({
+  type: GamesActionTypes.AddGameRequest,
+  payload,
+})
+
+export const AddGameSuccess = (payload) => ({
+  type: GamesActionTypes.AddGameSuccess,
+  payload,
+})
+
+export const AddGameFail = (payload) => ({
+  type: GamesActionTypes.AddGameFail,
+  payload,
+})

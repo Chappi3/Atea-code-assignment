@@ -1,10 +1,25 @@
 import { GamesActionTypes } from '../Reducers/GamesReducer'
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { GetGamesFail, GetGamesSuccess } from '../Actions/GamesActions'
+import {
+  AddGameFail,
+  AddGameSuccess,
+  GetGamesFail,
+  GetGamesSuccess,
+} from '../Actions/GamesActions'
 import axios from 'axios'
 
 export default function* GamesSaga() {
   yield takeEvery(GamesActionTypes.GetGamesRequest, getWorker)
+  yield takeEvery(GamesActionTypes.AddGameRequest, addWorker)
+}
+
+function* addWorker(request) {
+  try {
+    const response = yield call(addGameRequest, request.payload)
+    yield put(AddGameSuccess(request.payload))
+  } catch (e) {
+    yield put(AddGameFail(e.message))
+  }
 }
 
 function* getWorker(request) {
@@ -16,8 +31,18 @@ function* getWorker(request) {
   }
 }
 
+async function addGameRequest(payload) {
+  return axios({
+    method: 'POST',
+    url: 'https://localhost:44368/api/GameObject',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: payload,
+  })
+}
+
 async function getGamesRequest(payload) {
-  console.log(payload)
   if (payload) {
     return axios({
       method: 'GET',
