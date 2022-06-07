@@ -22,6 +22,9 @@
         <DataTemplate x:Name="AddGameTemplate" DataType="{x:Type viewmodels:AddGameViewModel}">
             <views:AddGame DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="GameTemplate" DataType="{x:Type viewmodels:GameViewModel}">
+            <views:Game DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid Background="#282D33">
